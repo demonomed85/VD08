@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Сайт с прогнозом погоды в любой точке мира</h1>
+
+        <form action="/" method="post" class="mt-4">
+            <div class="form-group">
+                <input type="text" name="city" class="form-control" placeholder="Введите город" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Получить прогноз</button>
+        </form>
+
+        <div class="mt-2">
+            {% if weather is not none %}
+                <h2 class="text-center">{{ weather['name'] }}, {{ weather['sys']['country'] }}</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Температура: <strong>{{ weather['main']['temp'] }}°C</strong></p>
+                        <p>Ощущается как: <strong>{{ weather['main']['feels_like'] }}°C</strong></p>
+                        <p>Давление: <strong>{{ weather['main']['pressure'] }} мм рт. ст.</strong></p>
+                        <p>Влажность: <strong>{{ weather['main']['humidity'] }}%</strong></p>
+                        <p>Ветер: <strong>{{ weather['wind']['speed'] }} м/с</strong></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mt-4">
+            {% if quotes is not none %}
+                <h2 class="text-center">Цитата</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p>{{ quotes['content'] }}</p>
+                        <p>- {{ quotes['author'] }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Подключение Bootstrap JS и jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
