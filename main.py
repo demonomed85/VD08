@@ -15,7 +15,7 @@ def index():
     return render_template('index.html', weather=weather, quotes=quotes)
 
 def get_weather(city):
-    api_key = '389a91f08e0721c361e3c6e23c62a19d'
+    api_key = 'YOUR_API_KEY'
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}'
     response = requests.get(url)
     return response.json()
